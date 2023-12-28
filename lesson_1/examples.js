@@ -57,3 +57,9 @@ console.log(palindromeSubstrings("supercalifragilisticexpialidocious")); // ["il
 console.log(palindromeSubstrings("abcddcbA"));   // ["bcddcb", "cddc", "dd"]
 console.log(palindromeSubstrings("palindrome")); // []
 console.log(palindromeSubstrings("")); // []
+
+let wordsArray = ['first', 'second', 'third', 'lecond'];
+
+let lengthArray = wordsArray.map((word) => word.length);
+console.log(lengthArray);
+console.log(lengthArray.indexOf(Math.max(...lengthArray)));
