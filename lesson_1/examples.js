@@ -63,3 +63,16 @@ let wordsArray = ['first', 'second', 'third', 'lecond'];
 let lengthArray = wordsArray.map((word) => word.length);
 console.log(lengthArray);
 console.log(lengthArray.indexOf(Math.max(...lengthArray)));
+
+let specialString = "This is a new line \nSo what if...";
+let specialIndex = specialString.indexOf('\n');
+console.log(specialString.slice(specialIndex));
+console.log("skip line");
+//console.log("\n");
+//console.log();
+let testCase4 = "\n f\naojdjf";
+console.log(testCase4);
+//console.log(testCase4.slice(0, 2) + testCase4.slice(3));
+console.log(testCase4.split("\n"));
+let joinMe = testCase4.split("\n");
+console.log(joinMe.join("\n"));
