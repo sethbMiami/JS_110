@@ -76,3 +76,66 @@ console.log(testCase4);
 console.log(testCase4.split("\n"));
 let joinMe = testCase4.split("\n");
 console.log(joinMe.join("\n"));
+
+let produce = {
+  apple: 'Fruit',
+  carrot: 'Vegetable',
+  pear: 'Fruit',
+  broccoli: 'Vegetable'
+};
+
+const selectFruit = (object, string) => {
+  let fruitObject = {};
+  for (let key of Object.entries(object)) {
+    //console.log(key);
+    if (key[1] === string) {
+      fruitObject[key[0]] = string;
+    }
+  }
+
+  return fruitObject;
+};
+
+console.log(selectFruit(produce, "Vegetable"));
+
+selectFruit(produce); // => { apple: 'Fruit', pear: 'Fruit' }
+
+//implement this to mutate array
+
+const doubleNumbers = (array, number) => {
+  let newArray = [];
+  for (let item of array) {
+    newArray.push(item * number);
+  }
+  return newArray;
+};
+
+let myNumbers = [1, 4, 3, 7, 2, 6];
+console.log(doubleNumbers(myNumbers, 6)); // => [2, 8, 6, 14, 4, 12]
+console.log(myNumbers);                // => [1, 4, 3, 7, 2, 6]
+
+//Try coding a solution that doubles the numbers that have odd indices:
+
+const doubleOddNumbers = (array) => {
+  for (let index in array) {
+    if (index % 2 !== 0) {
+      array[index] *= 2;
+    }
+  }
+  return array;
+};
+
+let newNumbers = [1, 4, 3, 7, 2, 6];
+console.log(doubleOddNumbers(newNumbers));  // => [2, 4, 6, 14, 2, 6]
+
+console.log(newNumbers);
+
+let callbackArray = ["hello", "goodbye", "whatup"];
+
+callbackArray.forEach((item, index) => console.log({item}, {index}));
+
+let arr = [ 2, 4, 6];
+arr['foo'] = 'me';
+console.log(arr);
+console.log(arr.length);
+console.log(Object.keys(arr).length);
