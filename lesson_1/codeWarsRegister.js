@@ -1,55 +1,52 @@
 /* eslint-disable max-len */
-/* eslint-disable max-lines-per-function */
-function queueTime(customers, n) {
-  //TODO
+// sum the even numbers of a row given the row number
+// [2]
+// [4, 6] 2^2 + 2
+// [8, 10, 12] 2^3 + 4
+// [14, 16, 18, 20] 2^4 + 4
+// [22, 24, 26, 28, 30]
 
-  if (!customers.length) {
-    return 0;
+
+const sumEvenRow = (number) => {
+  let firstNumber = 2 + ((number - 1) * number);
+  let row = [];
+  for (let index = 0; index < number; index++) {
+    row.push(firstNumber);
+    firstNumber += 2;
   }
-  if (n === 1) {
-    return customers.reduce((accumalator, currentValue) => accumalator + currentValue);
+
+  return row.reduce((accumalator, currentValue) => accumalator + currentValue);
+};
+
+console.log(sumEvenRow(3));
+console.log(sumEvenRow(4));
+console.log(sumEvenRow(5));
+
+console.log("--------");
+
+const remainingBlocks = (number) => {
+  let row = 1;
+  while (number - Math.pow(row, 2) >= 0) {
+    number -= Math.pow(row, 2);
+    row++;
+    console.log(
+      {number},
+      {row}
+    );
   }
 
-  if (n >= customers.length) {
-    return Math.max(customers);
-  }
+  return number;
+};
 
-  let time = Math.max(customers.slice(0, n));
-  let bigCustomer = time;
-  let checkout = [];
-  let emptyRegister = n;
+console.log(remainingBlocks(27));
+console.log(remainingBlocks(36));
+console.log(remainingBlocks(112));
+console.log(remainingBlocks(47));
 
-  while (customers.length) {
-
-    for (let index = 0; index < emptyRegister; index++) {
-      checkout.push(customers[index]);
-    }
-    customers.splice(0, emptyRegister);
-    emptyRegister = 0;
-
-    let smallCustomer = Math.min(checkout);
-
-    checkout = checkout.map((customer) => customer - smallCustomer);
-    bigCustomer -= smallCustomer;
-
-    if (bigCustomer <= 0) {
-      bigCustomer = Math.abs(bigCustomer - smallCustomer);
-      time += bigCustomer;
-    }
-
-    for (let customer of checkout.sort((a, b) => a - b)) {
-      if (customer === 0) {
-        customer.shift();
-        emptyRegister++;
-      }
-    }
-  }
-  return time;
-}
-
-let clients = [2,2,3,3,4,4];
-let registers = 2;
-
-//answer is 9
-
-console.log(queueTime(clients, registers));
+console.log(remainingBlocks(0) === 0); //true
+console.log(remainingBlocks(1) === 0); //true
+console.log(remainingBlocks(2) === 1); //true
+console.log(remainingBlocks(4) === 3); //true
+console.log(remainingBlocks(5) === 0); //true
+console.log(remainingBlocks(6) === 1); //true
+console.log(remainingBlocks(14) === 0); //true
