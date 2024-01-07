@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable max-len */
 // order array numerically
 let arr = ['10', '11', '9', '7', '8'];
@@ -156,3 +157,128 @@ const arrCop = [
 let deepCopy = JSON.parse(JSON.stringify(arrCop));
 console.log(deepCopy);
 console.log(JSON.stringify(arrCop));
+
+const truthiness = {
+  falsy: [ null, undefined, '', false, NaN, 0 ],
+  truthy: ['everything else...']
+};
+
+let newTruth = {};
+for (let item in truthiness) {
+  newTruth[item] = [...truthiness[item]];
+}
+console.log(newTruth);
+
+
+//keep only multiples of 3
+
+let arrThree = [[2], [3, 5, 7], [9], [11, 15, 18]];
+
+let threeCopy = arrThree.slice().map((array) => {
+  return array.filter((number) => number % 3 === 0);
+});
+
+console.log(threeCopy);
+
+//sort the array so that the sub-arrays are ordered based on the sum of the odd numbers that they contain.
+
+let arrOdd = [[1, 6, 7], [1, 5, 3], [1, 8, 3]];
+
+arrOdd.sort((a, b) => {
+  let oddA = a.filter((num) => num % 2 === 1).reduce((acc, cv) => acc + cv);
+  let oddB = b.filter((num) => num % 2 === 1).reduce((acc, cv) => acc + cv);
+
+  return oddA - oddB;
+});
+
+console.log(arrOdd);
+
+//[ [ 1, 8, 3 ], [ 1, 6, 7 ], [ 1, 5, 3 ] ]
+
+//Given the following data structure write some code to return an array containing the colors of the fruits and the
+//sizes of the vegetables. The sizes should be uppercase, and the colors should be capitalized.
+
+let objFruit = {
+  grape: { type: 'fruit', colors: ['red', 'green'], size: 'small' },
+  carrot: { type: 'vegetable', colors: ['orange'], size: 'medium' },
+  apple: { type: 'fruit', colors: ['red', 'green'], size: 'medium' },
+  apricot: { type: 'fruit', colors: ['orange'], size: 'medium' },
+  marrow: { type: 'vegetable', colors: ['green'], size: 'large' },
+};
+
+
+let mappedArray = Object.values(objFruit).map((obj) => {
+  if (obj['type'] === 'fruit') {
+    return obj['colors'].map((color) => color[0].toUpperCase() + color.slice(1));
+  }
+  return obj['size'].toUpperCase();
+});
+//[["Red", "Green"], "MEDIUM", ["Red", "Green"], ["Orange"], "LARGE"]
+console.log(mappedArray);
+//console.log(Object.keys(objFruit));
+
+//Given the following data structure, write some code to return an array which contains only the objects where all the numbers are even.
+
+let arr4 = [
+  { a: [1, 2, 3] },
+  { b: [2, 4, 6], c: [3, 6], d: [4] },
+  { e: [8], f: [6, 10] },
+];
+
+let help = arr4.filter((obj) => {
+  return Object.values(obj).every((subArr) => {
+    return subArr.every((num) => num % 2 === 0);
+  });
+});
+console.log(help);
+
+//Given the following data structure, write some code that defines an object where the key is the first item in each subarray, and the value is the second.
+
+let arr6 = [['a', 1], ['b', 'two'], ['sea', {c: 3}], ['D', ['a', 'b', 'c']]];
+
+// expected value of object
+// { a: 1, b: 'two', sea: { c: 3 }, D: [ 'a', 'b', 'c' ] }
+let newObj = {};
+
+arr6.forEach((array) => {
+  newObj[array[0]] = array[1];
+});
+
+console.log(newObj);
+
+//deep copy of the munsters object, whose nested objects cannot be altered.
+
+let munstersDeep = {
+  herman: { age: 32, gender: 'male' },
+  lily: { age: 30, gender: 'female' },
+  grandpa: { age: 402, gender: 'male' },
+  eddie: { age: 10, gender: 'male' },
+  marilyn: { age: 23, gender: 'female'}
+};
+
+let deepCopyMunster = JSON.parse(JSON.stringify(munstersDeep));
+
+deepCopyMunster['herman'] = 5;
+console.log(deepCopyMunster);
+console.log(munstersDeep);
+
+//5 sections in an 8-4-4-4-12 pattern, e.g., 'f65c57f6-a6aa-17a8-faa1-a67f2dc9fa91'.
+//the digits 0-9 and the letters a-f
+
+const createUUID = () => {
+  const UUIDarray = 'abcdef0123456789'.split("");
+  let UUID = "";
+
+  for (let index = 0; index < 32; index++) {
+    let random = Math.floor(Math.random() * UUIDarray.length);
+    UUID += UUIDarray[random];
+  }
+  return `${UUID.slice(0, 9)}-${UUID.slice(9, 13)}-${UUID.slice(13, 17)}-${UUID.slice(17, 21)}-${UUID.slice(21)}`;
+};
+console.log(createUUID());
+console.log(createUUID());
+console.log(createUUID());
+console.log(createUUID());
+console.log(createUUID());
+
+
