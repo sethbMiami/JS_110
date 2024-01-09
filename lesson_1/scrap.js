@@ -54,3 +54,12 @@ console.log("line here");
 
 
 //THIS SOLUTION WORKED FOR ALL TEST CASES!!!
+
+const uniqueInOrder = (string) => {
+  console.log(String(string).split("").filter((item, index) => item !== string[index + 1]));
+  return String(string).split("").filter((item, index) => item !== string[index + 1]);
+};
+
+console.log(uniqueInOrder('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']);
+console.log(uniqueInOrder('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']);
+console.log(uniqueInOrder([1,2,2,3,3])       == [1,2,3]);
